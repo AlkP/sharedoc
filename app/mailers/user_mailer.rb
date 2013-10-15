@@ -11,6 +11,18 @@ class UserMailer < ActionMailer::Base
          subject: 'Welcome to Site Pen Test ')
   end
 
+  def new_shared_email(user, shared, url)
+
+    @user_v = user
+    @user_shared = shared
+    @url = url
+
+    @subject = shared.email + " shared document with you."
+
+    mail(to: user,
+         subject: @subject)
+  end
+
   def shared_email(user, shared, url)
 
     @user_v = user

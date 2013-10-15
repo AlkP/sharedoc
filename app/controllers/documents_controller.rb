@@ -25,6 +25,9 @@ class DocumentsController < ApplicationController
     if @user_to.nil?
       @url = "#{request.protocol}#{request.host_with_port}/"
       UserMailer.shared_email(params[:user], @user, @url).deliver
+    else
+      @url = "#{request.protocol}#{request.host_with_port}/"
+      UserMailer.new_shared_email(params[:user], @user, @url).deliver
     end
 
     #@shared = Share.create(:name => @user.email, :user_id => session[:user_id], :document_id => params[:shares])
