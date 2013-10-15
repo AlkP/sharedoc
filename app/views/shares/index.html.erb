@@ -1,0 +1,30 @@
+<form action = "shares/add" method=get>
+  <input name='shares' value='<%=@jjj%>' type=hidden />
+  add email:<input name='user' value='test@test.te' /><input type=submit />
+</form>
+
+<br><br>
+<script>
+    function someFunc(){
+        alert(document.getElementById("txt").value);
+    }
+    document.getElementById("btn").onclick = someFunc;
+</script>
+
+
+<table>
+  <tr>
+    <th>Share with whom</th>
+  </tr>
+
+  <% @share.each do |share| %>
+      <tr>
+        <td><%= share.name %></td>
+        <td><%= link_to 'Destroy', share_path(share), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+</table>
+
+<script language="JavaScript" type="text/javascript">
+    setCookie('reload', 0);
+</script>

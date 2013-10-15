@@ -1,0 +1,26 @@
+<h1>New share</h1>
+
+<%= form_for @share, :html => { :multipart => true } do |f| %>
+    <% if @share.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@share.errors.count, "error") %> prohibited
+            this post from being saved:</h2>
+          <ul>
+            <% @share.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <p>
+      <%= f.label :email %><br>
+      <%= f.text_field :name %>
+    </p>
+
+
+    <p>
+    <td><%= link_to 'Shares', controller: "shares", action: "create", id: "document" %></td>
+    </p>
+<% end %>
+
+<%= link_to 'Back', shares_path %>

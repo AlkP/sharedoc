@@ -1,0 +1,120 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+
+    <div class="span8">
+    <%= link_to 'All', controller: "documents", action: "index" %> |
+    <%= link_to 'My documents', controller: "documents", action: "index", filter: "my"  %>  |
+    <%= link_to 'Shared with me', controller: "documents", action: "index", filter: "shared"  %> |
+    <%= link_to 'New document', new_document_path %>
+
+    </div>
+  </div>
+  <div class="span4">
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row-fluid">
+
+    <div class="span8">
+    <table id="documents" class="table table-condensed table-hover">
+      <thead>
+      <tr class="warning">
+        <th>Title</th>
+        <th>Description</th>
+        <th><ul class="pull-right">Action</ul></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @document.each do |document| %>
+          <tr>
+            <% if document.user_id == current_user.id %>
+              <td><%= link_to document.name, edit_document_path(document) %></td>
+            <% else %>
+              <td><%= document.name %></td>
+            <% end %>
+
+            <td><%= document.description %></td>
+            <% if document.file.exists? %>
+              <td>
+            <% else %>
+              <td  class="jopa">
+            <% end %>
+              <ul class="nav pull-right">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Action
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <!--<li>< %= link_to 'Show', document %></li>-->
+                    <!--<li>< %= link_to 'Edit', edit_document_path(document) %></li>-->
+                    <% if document.user_id == current_user.id %>
+                      <li><%= link_to 'Destroy', document_path(document), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+                      <% if document.file.exists? %>
+                        <li><%= link_to 'Download File', document.file.url(:original, false) %></li>
+                      <%end %>
+                      <!--<li>< %= link_to 'Shares', controller: "shares", action: "index", shares: document, :class => 'btn btn-success btn-block' %></li>-->
+                      <li><%= link_to 'Shares', controller: "documents", action: "index", shares_pre: document %></li>
+                    <% else %>
+                      <% if document.file.exists? %>
+                           <li><a href="<%= document.file.url(:original, false) %>" target="_blank">Download File</a></li>
+                          <!--<li>< %= link_to 'Download File', document.file.url(:original, false) %></li>-->
+                      <%end %>
+                    <% end %>
+                  </ul>
+                </li>
+              </ul>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    </div>
+    <div class="span4">
+      <div class="row-fluid">
+        <div class="span12">
+          <% if !(params[:shares_pre]).nil? %>
+          <!--< % if @share_doc.size > 0 %>-->
+            <script>
+              function someFunc(){
+                alert(document.getElementById("txt").value);
+                }
+                document.getElementById("btn").onclick = someFunc;
+            </script>
+              <table id="friends" class="table table-condensed table-hover">
+                <h3>Preview shared for document: </h3>
+                <h2><%= @document_preview_name %></h2>
+                <thead>
+                  <tr class="warning">
+                    <th>Type email</th>
+                    <th><ul class="pull-right"></ul></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <form action = "index" method=get>
+                        <input name='shares_pre' value='<%=params[:shares_pre]%>' type=hidden />
+                        <input name='shares_for' value='<%=@share_new_id%>' type=hidden />
+                        <input name='user' value='' /><input type=submit />
+                      </form>
+                    </td>
+                  </tr>
+                    <% @share_doc.each do |share| %>
+                      <tr>
+                        <td><%= share.name %></td>
+                        <td><%= link_to 'Destroy', share_path(share), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                      </tr>
+                    <% end %>
+                </tbody>
+              </table>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script language="JavaScript" type="text/javascript">
+  setCookie('reload', 0);
+</script>

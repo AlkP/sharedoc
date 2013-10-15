@@ -1,0 +1,37 @@
+<!--<h1>Activities users</h1>-->
+
+<div class="container-fluid">
+  <div class="row-fluid">
+
+    <div class="span8">
+      <table id="activities" class="table table-condensed table-hover">
+        <thead>
+        <tr class="warning">
+          <th>Date</th>
+          <!--<th>Name</th>-->
+          <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @activities.each do |activities| %>
+          <tr>
+            <td><%= activities.created_at %></td>
+            <!--<td>< %= activities.time %></td>-->
+            <!--<td> <%= activities.name %></td>-->
+            <td><%= activities.description %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="span4">
+    </div>
+  </div>
+</div>
+
+
+<script language="JavaScript" type="text/javascript">
+    setCookie('reload', 0);
+</script>
+

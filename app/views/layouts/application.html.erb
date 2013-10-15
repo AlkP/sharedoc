@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<%= render 'layouts/template/header' %>
+<%= render 'layouts/template/menu_user' %>
+<body>
+
+<%= render 'layouts/template/flash' %>
+
+<%= yield %>
+
+<script language="JavaScript" type="text/javascript">
+    setCookie('reload', 0);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
+    </div>
+    <div class="span4">
+      <table id="friends" class="table table-condensed table-hover">
+        <thead>
+        <tr class="warning">
+          <th>email</th>
+          <th><ul class="pull-right">Action</ul></th>
+        </tr>
+        </thead>
+        <tbody>
+        <%= form_for @friend_new, :html => { :multipart => true } do |f| %>
+
+            <tr>
+              <td>
+                <%= f.text_field :name %>
+              </td>
+              <td>
+                <%= f.submit 'Invite new friend'%>
+              </td>
+            </tr>
+        <% end %>
+        <% @friend.each do |f| %>
+            <tr>
+              <td><%= f.name %></td>
+
+              <td><%= link_to 'Destroy', friend_path(f), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="span4">
+    </div>
+  </div>
+</div>
+
+
+<script language="JavaScript" type="text/javascript">
+    setCookie('reload', 0);
+</script>

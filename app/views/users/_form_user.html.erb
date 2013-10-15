@@ -1,0 +1,56 @@
+
+<%= form_for @user do |f| %>
+    <div class="modal-header">
+    <% if @user.errors.any? %>
+        <div class="error_messages">
+          <h3>Form is invalid</h3>
+          <ul>
+            <% for message in @user.errors.full_messages %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    </div>
+    <div class="modal-body">
+    <table class="table table-striped">
+      <tr class="success">
+        <td>
+          Email
+        </td>
+        <td>
+          <%= f.text_field :email %>
+        </td>
+      </tr>
+      <tr class="warning">
+        <td>
+          Password
+        </td>
+        <td>
+          <%= f.password_field :password %>
+        </td>
+      </tr>
+      <tr class="error">
+        <td>
+          Password confirmation
+        </td>
+        <td>
+          <%= f.password_field :password_confirmation %>
+        </td>
+      </tr>
+      <tr class="info">
+        <td>
+          Country
+        </td>
+        <td>
+          <%= f.country_select :country, ["Ukraine"] %>
+        </td>
+      </tr>
+    </table>
+    <div class="modal-footer">
+      <a href="/" class="btn" data-dismiss="modal">Close</a>
+      <!--<a href="#" class="btn btn-primary">Save Changes</a>-->
+      <%= f.submit %>
+    </div>
+    </div>
+<%end%>

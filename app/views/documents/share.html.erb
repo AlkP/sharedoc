@@ -1,0 +1,25 @@
+
+<div class="span12">
+<table class="table table-condensed table-hover">
+  <tr class="warning">
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+
+  <% @document.each do |document| %>
+      <tr class="success">
+        <td><%= document.name %></td>
+        <td><%= document.description %></td>
+        <td><% if document.file.exists? %>
+                <%= link_to 'Download File', document.file.url(:original, false) %>
+            <%end %>
+        </td>
+      </tr>
+  <% end %>
+</table>
+
+</div>
+<script language="JavaScript" type="text/javascript">
+  setCookie('reload', 0);
+</script>
+

@@ -1,0 +1,51 @@
+<div class="modal-body">
+
+    <%= form_for @document, :html => { :multipart => true } do |f| %>
+
+        <% if @document.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@document.errors.count, "error") %> prohibited
+                this post from being saved:</h2>
+              <ul>
+                <% @document.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+        <table class="table table-striped">
+          <tr>
+            <td>
+              <%= f.label :name %><br>
+            </td>
+            <td>
+              <%= f.text_field :name %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.label :description %><br>
+            </td>
+            <td>
+              <%= f.text_area :description %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+          <%= f.label :File %><br>
+            </td>
+            <td>
+          <%= f.file_field :file %>
+            </td>
+          <tr>
+            <td>
+          <%= f.submit 'Save document'%>
+            </td>
+          </tr>
+        </table>
+    <% end %>
+
+</div>
+<div class="modal-footer">
+  <%= link_to 'Back', documents_path %>
+</div>

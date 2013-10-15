@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h1>Preview</h1>
+</div>
+
+<div class="modal-body">
+
+  <table class="table table-striped">
+    <tr  class="span4">
+      <td>
+        Name: <%= @document.name %>
+      </td>
+      <td>
+        Text: <%= @document.description %>
+      </td>
+      <td>
+        <%= link_to 'Edit', edit_document_path(@document) %>
+      </td>
+      <td>
+        <%= link_to 'Back', documents_path %>
+      </td>
+    </tr>
+  </table>
+
+</div>
+<!--
+<p>
+  <strong>File:</strong>
+  < %= @document.file %>
+</p>
+-->
+
+
+
