@@ -28,15 +28,15 @@
           </a>
           <ul class="dropdown-menu">
             <% if current_user %>
-                <li><a class="btn" type="button" href="#sign_up_modal" data-toggle="modal">Profile</a></li>
+                <li><a href="#sign_up_modal" data-toggle="modal">Profile</a></li>
                 <!--<li>< %= link_to "Profile", profile_path %></li>-->
-                <li><a class="btn" type="button" href="/log_out" data-toggle="modal">Logout</a></li>
+                <li><a href="/log_out" data-toggle="modal">Logout</a></li>
                 <!--<li>< %= link_to "Log out", log_out_path %></li>-->
             <% else %>
                 <!--<li>< %= link_to "Log in", log_in_path %></li>-->
                 <!--<li>< %= link_to "Sign up", sign_up_path %></li>-->
-                <li><a class="btn" type="button" href="#login_modal" data-toggle="modal">Login</a></li>
-                <li><a class="btn" type="button" href="#sign_up_modal" data-toggle="modal">Sign up</a></li>
+                <li><a href="#login_modal" data-toggle="modal">Login</a></li>
+                <li><a href="#sign_up_modal" data-toggle="modal">Sign up</a></li>
             <% end %>
 
           </ul>
